@@ -297,8 +297,8 @@ body {
 }
 
 @keyframes float {
-  from { transform: translateX(-100px); }
-  to { transform: translateX(calc(100vw + 100px)); }
+  from { transform: translateX(-150px); }
+  to { transform: translateX(100%); }
 }
 
 /* Título principal */
