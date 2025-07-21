@@ -1,0 +1,505 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #ff6b35, #f7931e, #ffcd3c);
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Estrellas animadas */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Container principal */
+.container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+
+/* Sobre de invitación - Responsivo */
+.envelope-container {
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: min(80vw, 800px);
+  height: min(80vh, 600px);
+  min-width: 280px;
+  min-height: 200px;
+}
+
+.envelope-container:hover {
+  transform: scale(1.02);
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  border-radius: clamp(8px, 2vw, 15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transform-style: preserve-3d;
+  transition: all 0.8s ease;
+}
+
+.envelope.opened {
+  transform: rotateY(-20deg) rotateX(10deg);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(45deg, #ff8c42, #ffa726);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+.envelope.opened .envelope-flap {
+  transform: rotateX(-180deg);
+}
+
+.envelope-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border-radius: 0 0 clamp(8px, 2vw, 15px) clamp(8px, 2vw, 15px);
+}
+
+/* Sello temático */
+.stamp {
+  position: absolute;
+  top: clamp(15px, 4vw, 30px);
+  right: clamp(15px, 4vw, 30px);
+  width: clamp(60px, 12vw, 100px);
+  height: clamp(60px, 12vw, 100px);
+  background: #ffcd3c;
+  border: clamp(2px, 0.5vw, 4px) solid #ff6b35;
+  border-radius: clamp(6px, 1.5vw, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bangers', cursive;
+  font-size: clamp(10px, 2vw, 16px);
+  color: #ff6b35;
+  text-align: center;
+  line-height: 1.1;
+}
+
+/* Texto del sobre */
+.envelope-text {
+  position: absolute;
+  bottom: clamp(30px, 8vw, 50px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+  max-width: 80%;
+}
+
+/* Goku imagen en el sobre */
+.goku-envelope {
+  position: absolute;
+  bottom: clamp(60px, 10vw, 120px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(250px, 28vw, 300px);
+  height: clamp(250px, 28vw, 300px);
+  background: url('img/4.png') no-repeat center;
+  background-size: contain;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Página de invitación abierta */
+.invitation-page {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #FFE4B5 100%);
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Papel con diseño especial */
+.paper-content {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+  position: relative;
+}
+
+.paper {
+  background: #ffffff;
+  padding: clamp(20px, 5vw, 60px);
+  position: relative;
+  /* Forma de papel con esquinas decorativas */
+  clip-path: polygon(
+      0 20px, 20px 0, 
+      calc(100% - 20px) 0, 100% 20px,
+      100% calc(100% - 20px), calc(100% - 20px) 100%,
+      20px 100%, 0 calc(100% - 20px)
+  );
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+.paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+      radial-gradient(circle at 20px 20px, #ff6b35 2px, transparent 2px),
+      radial-gradient(circle at calc(100% - 20px) 20px, #ff6b35 2px, transparent 2px),
+      radial-gradient(circle at 20px calc(100% - 20px), #ff6b35 2px, transparent 2px),
+      radial-gradient(circle at calc(100% - 20px) calc(100% - 20px), #ff6b35 2px, transparent 2px);
+  pointer-events: none;
+}
+
+/* Botón de regreso */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  color: white;
+  border: none;
+  padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 25px);
+  font-family: 'Bangers', cursive;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 1001;
+}
+
+.back-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Nubes decorativas */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  opacity: 0.6;
+}
+
+.cloud:before, .cloud:after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+}
+
+.cloud1 {
+  width: clamp(60px, 10vw, 100px);
+  height: clamp(24px, 4vw, 40px);
+  top: 15%;
+  left: 10%;
+  animation: float 20s infinite linear;
+}
+
+.cloud1:before {
+  width: clamp(30px, 5vw, 50px);
+  height: clamp(30px, 5vw, 50px);
+  top: clamp(-15px, -2.5vw, -25px);
+  left: 10px;
+}
+
+.cloud1:after {
+  width: clamp(36px, 6vw, 60px);
+  height: clamp(12px, 2vw, 20px);
+  top: clamp(-6px, -1vw, -10px);
+  right: 10px;
+}
+
+.cloud2 {
+  width: clamp(48px, 8vw, 80px);
+  height: clamp(18px, 3vw, 30px);
+  top: 60%;
+  right: 15%;
+  animation: float 25s infinite linear reverse;
+}
+
+.cloud2:before {
+  width: clamp(24px, 4vw, 40px);
+  height: clamp(24px, 4vw, 40px);
+  top: clamp(-12px, -2vw, -20px);
+  left: 10px;
+}
+
+@keyframes float {
+  from { transform: translateX(-100px); }
+  to { transform: translateX(calc(100vw + 100px)); }
+}
+
+/* Título principal */
+.main-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: #ff6b35;
+  text-shadow: 3px 3px 0px #ffcd3c, -1px -1px 0px #ff8c42;
+  margin-bottom: clamp(15px, 4vw, 30px);
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+  text-align: center;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* Invitación principal */
+.invitation-card {
+  background: linear-gradient(135deg, rgba(135,206,235,0.9), rgba(152,251,152,0.9));
+  padding: clamp(20px, 5vw, 40px);
+  border-radius: 20px;
+  border: 3px solid #ff6b35;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: clamp(20px, 5vw, 40px);
+}
+
+.invitation-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,205,60,0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.invitation-content {
+  position: relative;
+  z-index: 2;
+}
+
+.baby-name {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #ff6b35;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  margin: clamp(10px, 3vw, 20px) 0;
+}
+
+.detail-item {
+  margin: clamp(10px, 3vw, 20px) 0;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 600;
+  color: #333;
+}
+
+.detail-label {
+  font-family: 'Bangers', cursive;
+  color: #ff6b35;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.message-text {
+  font-style: italic;
+  background: rgba(255, 205, 60, 0.3);
+  padding: clamp(15px, 4vw, 25px);
+  border-radius: 15px;
+  margin: clamp(15px, 4vw, 25px) 0;
+  border: 2px solid #ffcd3c;
+  font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+  line-height: 1.5;
+}
+
+/* Imágenes de personajes - Grid responsivo */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: clamp(10px, 2vw, 20px);
+  margin: clamp(20px, 4vw, 30px) 0;
+  max-width: 100%;
+}
+
+.character-img {
+  width: 100%;
+  height: clamp(80px, 15vw, 120px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+  transition: transform 0.3s ease;
+}
+
+.character-img:hover {
+  transform: scale(1.1);
+}
+
+.goku-baby { background-image: url('img/2.png'); }
+.goku-kid { background-image: url('img/3.png'); }
+.vegeta-baby { background-image: url('img/4.png'); }
+.gohan-baby { background-image: url('img/5.png'); }
+.dragon-ball { background-image: url('img/6.png'); }
+.nimbus { background-image: url('img/7.png'); }
+
+/* Sección de confirmación */
+.confirmation-section {
+  background: rgba(255, 255, 255, 0.95);
+  padding: clamp(20px, 5vw, 40px);
+  border-radius: 20px;
+  border: 3px solid #ff6b35;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.confirmation-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #ff6b35;
+  margin-bottom: clamp(10px, 3vw, 20px);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+  background: linear-gradient(45deg, #25D366, #128C7E);
+  color: white;
+  border: none;
+  padding: clamp(12px, 3vw, 18px) clamp(20px, 5vw, 40px);
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  margin: clamp(10px, 2vw, 20px);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 12px);
+}
+
+.whatsapp-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+  background: linear-gradient(45deg, #20b856, #0f7a6b);
+}
+
+.whatsapp-icon {
+  width: clamp(20px, 4vw, 24px);
+  height: clamp(20px, 4vw, 24px);
+}
+
+/* Decoraciones adicionales */
+.dragon-balls-decoration {
+  display: flex;
+  justify-content: center;
+  gap: clamp(5px, 2vw, 10px);
+  margin: clamp(15px, 3vw, 20px) 0;
+  flex-wrap: wrap;
+}
+
+.dragon-ball-small {
+  width: clamp(20px, 4vw, 30px);
+  height: clamp(20px, 4vw, 30px);
+  background: radial-gradient(circle at 30% 30%, #ffcd3c, #ff8c42);
+  border-radius: 50%;
+  position: relative;
+  animation: sparkle 3s infinite;
+}
+
+.dragon-ball-small::before {
+  content: attr(data-stars);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ff6b35;
+  font-weight: bold;
+  font-size: clamp(8px, 2vw, 12px);
+}
+
+/* Responsive específico */
+@media (max-width: 480px) {
+  .paper {
+      margin: 10px 5px;
+  }
+  
+  .characters-grid {
+      grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .back-button {
+      top: 10px;
+      left: 10px;
+      padding: 8px 15px;
+  }
+  
+  .envelope-text {
+      font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .characters-grid {
+      grid-template-columns: repeat(6, 1fr);
+  }
+}

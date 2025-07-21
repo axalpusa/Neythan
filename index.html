@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baby Shower - Dragon Ball Z</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers:wght@400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Estrellas animadas -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Container principal -->
+  <div class="container" id="mainContainer">
+    <div class="envelope-container" onclick="openEnvelope()" tabindex="0" role="button" aria-label="Abrir invitación" onkeydown="if(event.key==='Enter'){openEnvelope()}">
+      <div class="envelope" id="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-body"></div>
+        <div class="stamp">BABY<br>SAIYAN<br>POWER</div>
+        <div class="goku-envelope"></div>
+        <div class="envelope-text">¡Toca para abrir la invitación!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Página de invitación abierta -->
+  <div class="invitation-page" id="invitationPage">
+    <button class="back-button" onclick="closeInvitation()">← Cerrar</button>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+
+    <div class="paper-content">
+      <div class="paper">
+        <h1 class="main-title">My Baby Shower</h1>
+        <div class="characters-grid">
+          <div class="character-img goku-baby"></div>
+          <div class="character-img goku-kid"></div>
+          <div class="character-img vegeta-baby"></div>
+          <div class="character-img gohan-baby"></div>
+          <div class="character-img dragon-ball"></div>
+          <div class="character-img nimbus"></div>
+        </div>
+
+        <div class="invitation-card">
+          <div class="invitation-content">
+            <div class="baby-name">Pequeño Goku</div>
+
+            <div class="dragon-balls-decoration">
+              <div class="dragon-ball-small" data-stars="⭐"></div>
+              <div class="dragon-ball-small" data-stars="⭐⭐"></div>
+              <div class="dragon-ball-small" data-stars="⭐⭐⭐"></div>
+              <div class="dragon-ball-small" data-stars="⭐⭐⭐⭐"></div>
+            </div>
+
+            <div class="detail-item">
+              <span class="detail-label">🏠 Lugar:</span>
+              <span>A definir</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">📅 Fecha:</span>
+              <span>Sábado, 16 de Agosto de 2025</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">🕐 Hora:</span>
+              <span>3:00 PM</span>
+            </div>
+
+            <div class="message-text">
+              ¡Únete a nosotros para celebrar la llegada de nuestro pequeño Super Saiyan! 🌟<br><br>
+              Será una aventura llena de amor, risas, juegos y muchas sorpresas épicas.<br><br>
+              Si deseas acompañar tu presencia con algún detalle especial para el pequeño guerrero, cualquier gesto de cariño será recibido con mucha gratitud y alegría.<br><br>
+              ¡Tu presencia es el regalo más valioso que podríamos recibir!<br><br>
+              <strong>¡Que comience la celebración más épica del universo! 🐲⚡</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirmación -->
+        <div class="confirmation-section">
+          <h2 class="confirmation-title">🐉 Confirma tu Asistencia 🐉</h2>
+          <p style="margin-bottom: 20px;">
+            ¡Necesitamos saber si podrás acompañarnos en esta gran celebración!<br>
+            Confirma tu asistencia por WhatsApp:
+          </p>
+          <a href="#" class="whatsapp-button" onclick="sendWhatsApp()">
+            <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c... (código SVG aquí omitido por brevedad) ..."/>
+            </svg>
+            ¡Confirmar por WhatsApp!
+          </a>
+          <div class="small-note">
+            Te redirigirá a WhatsApp para confirmar tu asistencia fácilmente
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
