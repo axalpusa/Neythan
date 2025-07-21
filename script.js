@@ -68,7 +68,7 @@ function confirmAttendance(event) {
 
 function sendWhatsApp() {
 // Número de teléfono (cambiar por el número real)
-const phoneNumber = "+519731572525"; // Cambiar por tu número
+const phoneNumber = "+51973157252";
 
 // Mensaje predefinido (puedes personalizarlo)
 const message = "¡Hola! Confirmo mi asistencia. Soy: ";
