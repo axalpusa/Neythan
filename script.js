@@ -22,6 +22,14 @@ function openEnvelope() {
   
   envelope.classList.add('opened');
   
+    // Reproducir música al hacer clic
+    const audio = document.getElementById("bg-music");
+    if (audio) {
+      audio.play().catch(e => {
+        console.log("El navegador bloqueó el audio hasta interacción adicional");
+      });
+    }
+
   setTimeout(() => {
       mainContainer.style.display = 'none';
       invitationPage.style.display = 'block';
