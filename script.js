@@ -21,7 +21,7 @@ function openEnvelope() {
   const invitationPage = document.getElementById('invitationPage');
   
   envelope.classList.add('opened');
-  
+
     // Reproducir música al hacer clic
     const audio = document.getElementById("bg-music");
     if (audio) {
@@ -91,3 +91,31 @@ const whatsappURL = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encode
 window.open(whatsappURL, '_blank');
 }
 
+// Contador xd
+function updateCountdown() {
+  const eventDate = new Date('Aug 16, 2025 15:00:00').getTime();
+  const now = new Date().getTime();
+  const timeLeft = eventDate - now;
+
+  if (timeLeft <= 0) {
+    // Cuando se alcanza la fecha, mostrar todos los valores en 0
+    document.getElementById('days').textContent = 0;
+    document.getElementById('hours').textContent = 0;
+    document.getElementById('minutes').textContent = 0;
+    document.getElementById('seconds').textContent = 0;
+    return; // Detener ejecución de esta iteración
+  }
+
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('minutes').textContent = minutes;
+  document.getElementById('seconds').textContent = seconds;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
