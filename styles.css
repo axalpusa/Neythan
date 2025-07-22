@@ -449,32 +449,70 @@ body {
   text-align: center;
   position: relative;
   box-shadow: 0 0 12px rgba(255, 221, 90, 0.6);
-  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+  background-image: url('img/9.png');
   background-blend-mode: overlay;
   backdrop-filter: blur(5px);
 }
 
-/* Estilo para el mensaje final épico */
-.message-text strong {
-  font-family: 'Luckiest Guy', cursive;
-  color: #000000;
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
-  text-shadow: 0 0 10px #5b4403;
+.message-text {
+  font-family: 'Comic Neue', 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top left, #ffed8a 0%, #fff6cc 100%);
+  color: #3b2900;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 500;
+  padding: clamp(20px, 4vw, 30px);
+  border-radius: 16px;
+  border: 3px solid #f7c325;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  line-height: 1.6;
+  margin-top: 20px;
+  text-align: center;
+  animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* Decoración con una esfera del dragón */
-.message-text::after {
-  content: '';
-  background-image: url('img/1.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: -30px;
-  right: -30px;
-  animation: spinBall 8s linear infinite;
-  opacity: 0.9;
+.gift-section {
+  background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,205,60,0.15));
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  border: 2px dashed #ffcd3c;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+  margin-top: 30px;
+  font-family: 'Comic Neue', 'Segoe UI', sans-serif;
+  color: #4b3600;
+  animation: fadeInUp 1.2s ease;
+}
+
+.gift-section img {
+  width: 180px;
+  margin-top: 12px;
+  border: 3px solid #ffcd3c;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 205, 60, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.gift-section img:hover {
+  transform: scale(1.05);
+}
+
+.gift-section small {
+  display: block;
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #6b4e00;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px #ffe066; }
+  50% { box-shadow: 0 0 20px #ffd700; }
 }
 
 /* Animación de rotación */
