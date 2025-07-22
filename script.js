@@ -79,7 +79,7 @@ function sendWhatsApp() {
 const phoneNumber = "+51973157252";
 
 // Mensaje predefinido (puedes personalizarlo)
-const message = "¡Hola! Confirmo mi asistencia. Soy: ";
+const message = "¡Hola! Confirmo mi asistencia. ";
 
 // Codificar el mensaje para URL
 const encodedMessage = encodeURIComponent(message);
