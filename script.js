@@ -93,7 +93,7 @@ window.open(whatsappURL, '_blank');
 
 // Contador xd
 function updateCountdown() {
-  const eventDate = new Date('Aug 16, 2025 15:00:00').getTime();
+  const eventDate = new Date('Aug 16, 2025 17:00:00').getTime();
   const now = new Date().getTime();
   const timeLeft = eventDate - now;
 
