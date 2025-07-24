@@ -93,7 +93,7 @@ const whatsappURL = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encode
 
 // Contador xd
 function updateCountdown() {
-  const eventDate = new Date('Aug 16, 2025 17:00:00').getTime();
+  const eventDate = new Date('Aug 16, 2025 19:00:00').getTime();
   const now = new Date().getTime();
   const timeLeft = eventDate - now;
 
@@ -132,7 +132,7 @@ function closeModal() {
 
 function confirmAndRedirect() {
   const name = document.getElementById("guestName").value.trim();
-  const phoneNumber = "+51973157252";
+  const phoneNumber = "+51998798947";//998 798 947
 
   if (!name) {
     alert("Por favor, ingresa tu nombre y apellido.");
