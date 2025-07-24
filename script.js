@@ -74,7 +74,7 @@ function confirmAttendance(event) {
   }
 }
 
-function sendWhatsApp() {
+/*function sendWhatsApp() {
 // Número de teléfono (cambiar por el número real)
 const phoneNumber = "+51973157252";
 
@@ -88,8 +88,8 @@ const encodedMessage = encodeURIComponent(message);
 const whatsappURL = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodedMessage}`;
 
 // Abrir en una nueva pestaña
-window.open(whatsappURL, '_blank');
-}
+//window.open(whatsappURL, '_blank');
+}*/
 
 // Contador xd
 function updateCountdown() {
@@ -119,3 +119,36 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+function openModal() {
+  document.getElementById("whatsappModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("whatsappModal").style.display = "none";
+  document.getElementById("guestName").value = "";
+  document.getElementById("redirectMsg").style.display = "none";
+}
+
+function confirmAndRedirect() {
+  const name = document.getElementById("guestName").value.trim();
+  const phoneNumber = "+51973157252";
+
+  if (!name) {
+    alert("Por favor, ingresa tu nombre y apellido.");
+    return;
+  }
+
+  const message = `¡Hola! Soy ${name} y confirmo mi asistencia al Baby Shower. 🎉`;
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappURL = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodedMessage}`;
+
+  // Mostrar mensaje antes de redirigir
+  const msg = document.getElementById("redirectMsg");
+  msg.style.display = "block";
+
+  setTimeout(() => {
+    window.open(whatsappURL, '_blank');
+    closeModal();
+  }, 2000);
+}

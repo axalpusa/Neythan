@@ -433,7 +433,6 @@ body {
   border-radius: 8px;
   box-shadow: inset 0 0 3px rgba(0,0,0,0.1);
 }
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Oxanium:wght@400;700&display=swap');
 
 .message-text {
   font-family: 'Oxanium', sans-serif;
@@ -628,16 +627,17 @@ body {
 
 .countdown-container {
   background-color: #d2a119;
-  color: rgb(0, 0, 0);
+  color: #000;
   border: 3px solid #ff6b35;
-  padding: 20px;
+  padding: clamp(16px, 4vw, 24px);
   border-radius: 15px;
-  margin: 40px 0;
+  margin: clamp(20px, 5vw, 40px) 0;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
 .countdown-title {
-  font-size: 1.5em;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   margin-bottom: 10px;
 }
 
@@ -649,22 +649,36 @@ body {
 
 .countdown-unit {
   background-color: rgba(255,255,255,0.1);
-  padding: 10px;
+  padding: clamp(10px, 3vw, 20px);
   border-radius: 10px;
 }
 
 .countdown-number {
-  font-size: 1.8em;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
   font-weight: bold;
   font-style: oblique;
 }
 
 .countdown-label {
-  font-size: 0.9em;
+  font-size: clamp(0.8rem, 2vw, 1rem);
   font-weight: bold;
   font-style: oblique;
 }
 
+/* 📱 Responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+  .countdown-units {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+/* 🧱 Responsive ultra estrecho */
+@media (max-width: 400px) {
+  .countdown-units {
+    grid-template-columns: 1fr;
+  }
+}
 .map-link {
   color: #0d6efd;
   text-decoration: none;
@@ -742,4 +756,53 @@ body {
   .characters-grid {
       grid-template-columns: repeat(6, 1fr);
   }
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  background-color: #25D366;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #1ebe5d;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
 }

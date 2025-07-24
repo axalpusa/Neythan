@@ -96,46 +96,55 @@
                 Monto sugerido desde S/ 20, solo si está en tus posibilidades 💖
               </small>
             </div>
-        </div>
-        <!-- cuenta atras -->
-        <div class="countdown-container">
-          <h3 class="countdown-title">Faltan:</h3>
-          <div class="countdown-units">
-              <div class="countdown-unit">
-                  <div id="days" class="countdown-number">0</div>
-                  <div class="countdown-label">Días</div>
+            <!-- cuenta atras -->
+            <div class="countdown-container">
+              <h3 class="countdown-title">Faltan:</h3>
+              <div class="countdown-units">
+                  <div class="countdown-unit">
+                      <div id="days" class="countdown-number">0</div>
+                      <div class="countdown-label">Días</div>
+                  </div>
+                  <div class="countdown-unit">
+                      <div id="hours" class="countdown-number">0</div>
+                      <div class="countdown-label">Horas</div>
+                  </div>
+                  <div class="countdown-unit">
+                      <div id="minutes" class="countdown-number">0</div>
+                      <div class="countdown-label">Minutos</div>
+                  </div>
+                  <div class="countdown-unit">
+                      <div id="seconds" class="countdown-number">0</div>
+                      <div class="countdown-label">Segundos</div>
+                  </div>
               </div>
-              <div class="countdown-unit">
-                  <div id="hours" class="countdown-number">0</div>
-                  <div class="countdown-label">Horas</div>
+            </div>
+
+              <!-- Confirmación -->
+              <div class="confirmation-section">
+                <h2 class="confirmation-title">🐉 Confirma tu Asistencia 🐉</h2>
+                <p style="margin-bottom: 20px;">
+                  ¡Necesitamos saber si podrás acompañarnos en esta gran celebración!<br>
+                  Confirma tu asistencia por WhatsApp:
+                </p>
+                <a href="#" class="whatsapp-button" onclick="openModal()">
+                  ¡Confirmar por WhatsApp!
+                </a>
+                <div class="small-note">
+                  Te redirigirá a WhatsApp para confirmar tu asistencia fácilmente
+                </div>
               </div>
-              <div class="countdown-unit">
-                  <div id="minutes" class="countdown-number">0</div>
-                  <div class="countdown-label">Minutos</div>
+
+              <div id="whatsappModal" class="modal">
+                <div class="modal-content">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <h3>Confirmar asistencia</h3>
+                  <label for="guestName">Nombre y Apellido:</label>
+                  <input type="text" id="guestName" placeholder="Ej. Goku Son">
+                  <button onclick="confirmAndRedirect()">Enviar confirmación</button>
+                  <p id="redirectMsg" style="display:none; font-style: italic; margin-top: 10px;">Te redirigirá a WhatsApp para confirmar tu asistencia fácilmente.</p>
+                </div>
               </div>
-              <div class="countdown-unit">
-                  <div id="seconds" class="countdown-number">0</div>
-                  <div class="countdown-label">Segundos</div>
-              </div>
-          </div>
       </div>
-        <!-- Confirmación -->
-        <div class="confirmation-section">
-          <h2 class="confirmation-title">🐉 Confirma tu Asistencia 🐉</h2>
-          <p style="margin-bottom: 20px;">
-            ¡Necesitamos saber si podrás acompañarnos en esta gran celebración!<br>
-            Confirma tu asistencia por WhatsApp:
-          </p>
-          <a href="#" class="whatsapp-button" onclick="sendWhatsApp()">
-            <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c... (código SVG aquí omitido por brevedad) ..."/>
-            </svg>
-            ¡Confirmar por WhatsApp!
-          </a>
-          <div class="small-note">
-            Te redirigirá a WhatsApp para confirmar tu asistencia fácilmente
-          </div>
-        </div>
       </div>
     </div>
   </div>
